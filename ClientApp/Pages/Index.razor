@@ -1,0 +1,10 @@
+﻿@page "/"
+@inject CountService CountSvc;
+
+<h3>Scoped is Singleton service</h3>
+<p>Application created in client-side. So it's individual instance for each clients, tabs, sessions</p>
+<p>Stop server do not affect because application created and run like as normal web page</p>
+<div>
+    Count: <span>@CountSvc.Count</span>
+    <button @onclick="CountSvc.Increase">Add</button>
+</div>
