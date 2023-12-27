@@ -1,0 +1,18 @@
+﻿@page "/"
+@inject CountService countSvc;
+@inject ScopedCountService scopedSvc;
+
+<h3>Server services</h3>
+<div>open multiple broswer, tab to check service</div>
+
+<h4>Global services, single instance for all clients</h4>
+<div>
+    Count: <span>@countSvc.Count</span>
+    <button @onclick="countSvc.Increase">Add</button>
+</div>
+
+<h4>Scoped services, individual instance for each connection Http request</h4>
+<div>
+    Count: <span>@scopedSvc.Count</span>
+    <button @onclick="scopedSvc.Increase">Add</button>
+</div>
