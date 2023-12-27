@@ -1,0 +1,33 @@
+﻿@page "/css"
+
+<h3>Css</h3>
+<div>
+    <a href="https://learn.microsoft.com/en-gb/aspnet/core/blazor/components/css-isolation">https://learn.microsoft.com/en-gb/aspnet/core/blazor/components/css-isolation</a>
+</div>
+<h4>Global CSS</h4>
+<p>
+    Define stylesheet in wwwroot/index.html<br />
+    Custom css in wwwroot/css/app.css
+</p>
+<h4>Component css</h4>
+<p>
+    Create a {ComponentName}.razor.css file. It apply for target component only<br />
+    Use the ::deep to apply css from parent to child component<br />
+    * Note: Uncomment the link for CSS isolation in wwwroot/index.html
+</p>
+<h4>Example</h4>
+
+Global: .header {color: blue;}
+<br />
+Parent: .title {color: red;} ::deep .small {font-size: small;}
+<br />
+Child: .title {color: green}
+<br />
+<br />
+<br />
+<div class="header">Header</div>
+<div class="title">Parent title</div>
+<div>
+    <!--child component should in element to apply ::deep-->
+    <Css_Child></Css_Child>
+</div>

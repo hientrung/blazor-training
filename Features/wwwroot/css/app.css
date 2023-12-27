@@ -30,3 +30,8 @@ h1:focus {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+.header {
+    color: blue;
+    font-size: 30px;
+}

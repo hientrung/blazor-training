@@ -1,0 +1,7 @@
+﻿.title {
+    color: red;
+}
+
+::deep .small {
+    font-size: smaller;
+}
