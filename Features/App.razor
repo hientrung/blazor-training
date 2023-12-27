@@ -1,0 +1,33 @@
+﻿<div style="display: flex;">
+    <div style="width: 200px;background-color: #eee;padding: 10px;">
+        <h3>Topic</h3>
+        <ul style="list-style: none;padding-left: 5px;">
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li>
+                <div>MVVM pattern</div>
+                <ul>
+                    <li><a href="/mvvm/inline">Inline</a></li>
+                    <li><a href="/mvvm/partital">Partital class</a></li>
+                    <li><a href="/mvvm/baseclass">Base class</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div style="flex: 1;padding: 10px;">
+        <Router AppAssembly="@typeof(App).Assembly">
+            <Found Context="routeData">
+                <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+                <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+            </Found>
+            <NotFound>
+                <PageTitle>Not found</PageTitle>
+                <LayoutView Layout="@typeof(MainLayout)">
+                    <p role="alert">Sorry, there's nothing at this address.</p>
+                </LayoutView>
+            </NotFound>
+        </Router>
+    </div>
+</div>
+

@@ -1,0 +1,17 @@
+﻿@page "/mvvm/inline"
+
+<h3>Inline</h3>
+<p>
+    - Model and View written in a file .razor, model was put in directive @@code {.....}<br/>
+    - Use directives to get services or config like as inject, page,...<br/>
+    - Model and View are same scope
+</p>
+
+<div>
+    <button @onclick="Inc">Count: @Count</button>
+</div>
+
+@code {
+    int Count = 0;
+    void Inc() => Count++;
+}

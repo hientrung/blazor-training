@@ -1,0 +1,13 @@
+﻿@page "/mvvm/baseclass"
+@inherits BaseClassComponent
+
+<h3>BaseClass</h3>
+<p>
+    - Model written in a file .razor.cs<br />
+    - Use directives in view or attribute in class <br />
+    - View can not access to private fields in base class
+</p>
+
+<div>
+    <button @onclick="Inc">Count: @Count</button>
+</div>
