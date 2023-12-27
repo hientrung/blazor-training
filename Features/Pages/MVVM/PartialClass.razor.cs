@@ -1,6 +1,9 @@
 ﻿
+using Microsoft.AspNetCore.Components;
+
 namespace Features.Pages.MVVM
 {
+    [Route("/mvvm/partial")]
     public partial class PartialClass
     {
 
