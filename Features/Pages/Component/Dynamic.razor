@@ -1,0 +1,42 @@
+﻿@page "/component/dynamic"
+
+<h3>Dynamic render component</h3>
+<h4>Use if condition to toggle child components</h4>
+<div>
+    <button @onclick="@(e => updateIf("page1"))">Page 1</button>
+    <button @onclick="@(e => updateIf("page2"))">Page 2</button>
+</div>
+@if (currentIf=="page1")
+{
+    <DynamicEx1></DynamicEx1>
+}
+else
+{
+    <DynamicEx2></DynamicEx2>
+}
+@code {
+    string currentIf = "page1";
+    void updateIf(string page) => currentIf = page;
+}
+
+
+
+<h4>Use component DynamicComponent</h4>
+<p>
+    <a target="_blank" href="https://learn.microsoft.com/en-gb/aspnet/core/blazor/components/dynamiccomponent">Document</a>
+</p>
+<div>
+    <button @onclick="@(e => updateType("page1"))">Page 1</button>
+    <button @onclick="@(e => updateType("page2"))">Page 2</button>
+</div>
+<DynamicComponent Type="source[currentType]"></DynamicComponent>
+
+@code {
+    string currentType = "page1";
+    Dictionary<string, Type> source =new()
+    {
+        {"page1", typeof(DynamicEx1)},
+        {"page2", typeof(DynamicEx2)},
+    };
+    void updateType(string page) => currentType = page;
+}
