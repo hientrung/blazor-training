@@ -47,3 +47,8 @@
     int sharedValue;
     void incSharedValue() => sharedValue++;
 }
+
+
+<h4>Static model</h4>
+<p>Use a singleton object to shared data everywhere</p>
+<button @onclick="Models.Count.Instance.Inc">Click: @Models.Count.Instance.Value</button>
