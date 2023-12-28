@@ -1,0 +1,22 @@
+﻿@page "/mvvm/model"
+
+<h3>ModelField</h3>
+<p>
+    Define a model class in a separate file<br/>
+    Define a field/property model in file .razor<br/>
+    Can create new or static model to reset or keep value in model
+</p>
+
+<div style="margin-bottom: 10px;">
+    Reset new model
+    <button @onclick="model.Inc">Count: @model.Value</button>
+</div>
+<div>
+    Static model
+    <button @onclick="singleton.Inc">Count: @singleton.Value</button>
+</div>
+
+@code {
+    Models.Count model = new Models.Count();
+    Models.Count singleton = Models.Count.Instance;
+}
