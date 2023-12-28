@@ -35,3 +35,8 @@ h1:focus {
     color: blue;
     font-size: 30px;
 }
+
+.block {
+    padding: 20px;
+    background-color: #eee;
+}

@@ -1,0 +1,30 @@
+﻿<div class="block">
+    <div>Field/Property: @MyField</div>
+
+    <div>Parameter: @MyParameter</div>
+
+    <div>Event: <button @onclick="CountClick">click: @Count</button></div>
+
+    <div>Async: <button @onclick="AsyncClick">@AsyncTitle</button></div>
+    <div>@ChildContent</div>
+</div>
+@code {
+    String MyField = "Testing field";
+    [Parameter, EditorRequired]
+    public String MyParameter { get; set; } = "Default";
+
+    int Count { get; set; }
+    void CountClick() => Count++;
+
+    String AsyncTitle = "Click me";
+    async Task AsyncClick()
+    {
+        Console.WriteLine("Clicked");
+        AsyncTitle = "Waiting...";
+        await Task.Delay(2000);
+        AsyncTitle = "Click me";
+    }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}

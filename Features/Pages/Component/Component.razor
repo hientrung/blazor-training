@@ -1,0 +1,40 @@
+﻿@page "/component"
+
+<h3>Component</h3>
+<div><a href="https://learn.microsoft.com/en-gb/aspnet/core/blazor/components">https://learn.microsoft.com/en-gb/aspnet/core/blazor/components</a></div>
+<p>Combination of C# and HTML markup in Razor component files with the .razor file extension.</p>
+<p>
+    Members of the component class<br />
+    <ul>
+        <li>Property and field initializers.</li>
+        <li>
+            Parameter values from arguments passed by parent components and route parameters.<br />
+            Public property with attribute Parameter. Optional required by attribute EditorRequired<br />
+            Get route parameter via [Parameter] same name in route path<br />
+            RenderFragment ChildContent to get content in component<br/>
+            ChildContent OtherName.. to define rendering logic
+        </li>
+        <li>
+            Methods for user event handling, lifecycle events, and custom component logic.<br />
+            Always return a Task from asynchronous methods.
+        </li>
+    </ul>
+</p>
+<div style="margin-bottom: 10px;">
+    <ComponentEx1 MyParameter="Test Parameter">
+        Dynamic content from parent
+    </ComponentEx1>
+</div>
+
+<div style="margin-bottom: 10px;">
+    <ComponentEx2>
+        <Header>Content from parent</Header>
+        <Body>
+            Current date: @DateTime.Now.ToLongDateString()
+        </Body>
+    </ComponentEx2>
+</div>
+
+@code {
+
+}

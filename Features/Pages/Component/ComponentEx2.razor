@@ -1,0 +1,22 @@
+﻿<div class="block">
+    <div>
+        Header<br/>
+        @Header
+    </div>
+    <div>
+        Body<br />
+        @Body
+    </div>
+    @EmptyParameter
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment? Header { get; set; }
+
+    [Parameter, EditorRequired]
+    public RenderFragment Body { get; set; } = default!;
+
+    [Parameter]
+    public RenderFragment? EmptyParameter { get; set; }
+}
