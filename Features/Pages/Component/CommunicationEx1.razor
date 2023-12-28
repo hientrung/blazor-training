@@ -1,0 +1,14 @@
+﻿<div>Current value: @Count</div>
+<div><button @onclick="Click">Raise event</button></div>
+@code {
+    [Parameter, EditorRequired]
+    public int Count { get; set; }
+
+    [Parameter]
+    public EventCallback<DateTime> OnCallback { get; set; }
+
+    void Click()
+    {
+        OnCallback.InvokeAsync(DateTime.Now);
+    }
+}

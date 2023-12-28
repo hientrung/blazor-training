@@ -1,0 +1,49 @@
+﻿@page "/component/communication"
+
+<h3>Component / Communication</h3>
+<h4>Parameter and Event</h4>
+<p>Define public property with attribute [Parameter], and type EventCallback for event</p>
+<button @onclick="IncValue">Increate value</button>
+<span>Get value from child event: @Date?.ToLongTimeString()</span>
+<div class="block">
+    <CommunicationEx1 Count="Value" OnCallback="@(e => Date=e)"></CommunicationEx1>
+</div>
+@code {
+    int Value = 0;
+    void IncValue() => Value++;
+    DateTime? Date;
+}
+
+
+<h4>Capture reference</h4>
+<p>
+    Add an @@ref attribute to the child component.<br/>
+    Define a field with the same type as the child component.
+</p>
+<div><button @onclick="getChildValue">Get child value: @ex2Value</button></div>
+<div class="block">
+    <CommunicationEx2 @ref="refChild"></CommunicationEx2>
+</div>
+@code {
+    CommunicationEx2? refChild;
+    int? ex2Value;
+    void getChildValue() => ex2Value = refChild?.Count;
+}
+
+<h4>Cascading values</h4>
+<p>
+    Shared data across components, type of value used as identifier or use name if same type<br />
+    Root level: builder.Services.AddCascadingValue(...) <br/>
+    Component level: @("<CascadingValue Value=\"\">...</CascadingValue>")<br/>
+    Receive in descendent components by attribute CascadingParameter
+</p>
+<div><button @onclick="incSharedValue">Click: @sharedValue</button></div>
+<CascadingValue Value="sharedValue" Name="SharedInt">
+    <div class="block">
+        <CommunicationEx3></CommunicationEx3>
+    </div>
+</CascadingValue>
+@code {
+    int sharedValue;
+    void incSharedValue() => sharedValue++;
+}
