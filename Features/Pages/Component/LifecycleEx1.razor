@@ -1,0 +1,20 @@
+﻿<div class="block">
+    <div>Parameter value: @Expanded</div>
+    <div>
+        My value: @isExpanded
+        <button @onclick="toggle">Toggle</button>
+    </div>
+</div>
+@code {
+    [Parameter]
+    public bool Expanded { get; set; }
+    bool isExpanded { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        isExpanded = Expanded;
+    }
+
+    void toggle() => isExpanded = !isExpanded;
+}

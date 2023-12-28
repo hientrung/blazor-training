@@ -1,0 +1,30 @@
+﻿<div class="block">
+    @if (isLoading)
+    {
+        <div>Loading...</div>
+    }
+    else
+    {
+        <div>@myValue</div>
+    }
+</div>
+
+@code {
+    [Parameter, EditorRequired]
+    public int Id { get; set; }
+    bool isLoading = true;
+    string myValue = "";
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        isLoading = true;
+        Task.Run(async () =>
+        {
+            await Task.Delay(2000);
+            myValue = $"I get value id = @{Id}";
+            isLoading = false;
+            StateHasChanged();
+        });
+    }
+}

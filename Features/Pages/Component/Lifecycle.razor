@@ -1,0 +1,31 @@
+﻿@page "/component/lifecycle"
+
+<h3>Lifecycle</h3>
+<p>
+    <img src="/images/component-lifecycle-1.jpg" />
+</p>
+
+<h4>Use OnInitialized to init local value</h4>
+<p>Example child component has isExpanded was init from parameter but it changed and keep vale by itself</p>
+<div>
+    <button @onclick="@(e => ex1Expanded=!ex1Expanded)">Toggle Parameter</button>
+</div>
+<LifecycleEx1 Expanded="ex1Expanded"></LifecycleEx1>
+@code {
+    bool ex1Expanded = true;
+}
+
+
+<h4>Use OnAfterRender to load new value</h4>
+<p>Example parent show detail component via parameter</p>
+<div>
+    <input type="number" @bind="ex2Id" />
+</div>
+<LifecycleEx2 Id="ex2Id"></LifecycleEx2>
+
+@code {
+    int ex2Id=123;
+}
+
+<h4>Dispose</h4>
+<p>Implements IDisposable then Blazor will execute Dispose once the component is removed from its parent's render tree</p>
