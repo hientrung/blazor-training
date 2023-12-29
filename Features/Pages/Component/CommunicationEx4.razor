@@ -1,0 +1,16 @@
+﻿<div class="block">
+    <button @onclick="click">Click: @Count</button>
+</div>
+
+@code {
+    [Parameter]
+    public int Count { get; set; }
+    [Parameter]
+    public EventCallback<int> CountChanged { get; set; }
+
+    void click()
+    {
+        Count++;
+        CountChanged.InvokeAsync(Count);
+    }
+}

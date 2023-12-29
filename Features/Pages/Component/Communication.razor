@@ -15,9 +15,22 @@
 }
 
 
+<h4>Bind value</h4>
+<p>
+    - Child implement 2 [Parameter] to define a property can binding. Ex: String Name; EventCallback@("<String>") NameChanged;<br />
+    - Parent use @@bind-....
+</p>
+<div>Current value: @ex4</div>
+<CommunicationEx4 @bind-Count="ex4"></CommunicationEx4>
+@code {
+    int ex4 = 100;
+
+}
+
+
 <h4>Capture reference</h4>
 <p>
-    Add an @@ref attribute to the child component.<br/>
+    Add an @@ref attribute to the child component.<br />
     Define a field with the same type as the child component.
 </p>
 <div><button @onclick="getChildValue">Get child value: @ex2Value</button></div>
@@ -33,8 +46,8 @@
 <h4>Cascading values</h4>
 <p>
     Shared data across components, type of value used as identifier or use name if same type<br />
-    Root level: builder.Services.AddCascadingValue(...) <br/>
-    Component level: @("<CascadingValue Value=\"\">...</CascadingValue>")<br/>
+    Root level: builder.Services.AddCascadingValue(...) <br />
+    Component level: @("<CascadingValue Value=\"\">...</CascadingValue>")<br />
     Receive in descendent components by attribute CascadingParameter
 </p>
 <div><button @onclick="incSharedValue">Click: @sharedValue</button></div>
