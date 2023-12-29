@@ -1,0 +1,90 @@
+﻿@page "/input"
+@using System.ComponentModel.DataAnnotations
+@using Microsoft.AspNetCore.Components.Forms
+
+<h3>Input & Form</h3>
+
+<div>
+    <a target="_blank" href="https://learn.microsoft.com/en-gb/aspnet/core/blazor/components/data-binding">https://learn.microsoft.com/en-gb/aspnet/core/blazor/components/data-binding</a>
+</div>
+<div>
+    <a target="_blank" href="https://learn.microsoft.com/en-gb/aspnet/core/blazor/forms">https://learn.microsoft.com/en-gb/aspnet/core/blazor/forms</a>
+</div>
+
+<h4>Data binding</h4>
+<p>
+    - Use @@bind with input element<br />
+    - Custom getter/setter of property or use @@bind:get, @@bind:set<br />
+    - Default call setter on element event onchange, use @@bind:event to change it<br />
+    - Call method after changed by @@bind:after
+</p>
+
+<div class="block">
+    <div>
+        <input type="text" @bind="ex1" @bind:after="ex1Changed" @bind:event="oninput" />
+    </div>
+    <div>
+        Last changed: @ex1Time?.ToLongTimeString()
+    </div>
+</div>
+@code {
+    string ex1 = "";
+    DateTime? ex1Time;
+    void ex1Changed()
+    {
+        ex1Time = DateTime.Now;
+    }
+}
+
+<h4>Form</h4>
+<p>
+    - Define a class model has properties for form values with validation attributes<br />
+    - Define property model with [SupplyParameterFromForm] <br />
+    - Use components UI: EditForm, Inputxxxx, AntiforgeryToken, DataAnnotationsValidator, ValidationSummary, ValidationMessage <br />
+    - Custom validation by create new attribute class inherit from ValidationAttribute
+</p>
+<div class="block">
+    <EditForm Model="ex2Model" OnValidSubmit="ex2Submit" OnInvalidSubmit="ex2Invalid">
+        <AntiforgeryToken />
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        Name
+        <InputText @bind-Value="ex2Model.Name" />
+        Email
+        <InputText @bind-Value="ex2Model.Email" />
+        <button type="submit">Submit</button>
+    </EditForm>
+    @ex2Msg
+</div>
+@code {
+    public class Ex2Model
+    {
+        [Required]
+        [MyValidate("trung")]
+        public String? Name { get; set; }
+        [EmailAddress, Required]
+        public String? Email { get; set; }
+    }
+
+    public class MyValidate : ValidationAttribute
+    {
+        public String Name { get; }
+        public MyValidate(String name) : base($"Value must be '{name}'")
+        {
+            Name = name;
+        }
+
+        public override bool IsValid(object? value)
+        {
+            return (value as string) == Name;
+        }
+    }
+
+    [SupplyParameterFromForm]
+    public Ex2Model ex2Model { get; set; } = new();
+    String ex2Msg = "";
+
+    void ex2Submit() => ex2Msg = $"{ex2Model.Name}, {ex2Model.Email}";
+
+    void ex2Invalid() => ex2Msg = "";
+}
