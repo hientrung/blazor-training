@@ -1,0 +1,12 @@
+﻿@page "/navigation/ex/{id:int?}"
+
+<h3>Navigation example</h3>
+<div>Id = @Id</div>
+<div>Filter = @Filter</div>
+@code {
+    [Parameter]
+    public int? Id { get; set; }
+
+    [Parameter, SupplyParameterFromQuery]
+    public string? Filter { get; set; }
+}

@@ -1,0 +1,42 @@
+﻿@page "/navigation"
+@inject NavigationManager Nav
+
+<h3>Navigation</h3>
+<div>
+    <a href="https://learn.microsoft.com/en-gb/aspnet/core/blazor/fundamentals/routing">https://learn.microsoft.com/en-gb/aspnet/core/blazor/fundamentals/routing</a>
+</div>
+<p>
+    - Router config by component Router<br />
+    - Route path defined in each page component via @@page or [Route] <br />
+    - Route parameter <br />
+    <ul>
+        <li>
+            Config by {....} in route path. Ex: /detail/{id}
+        </li>
+        <li>
+            Get parameter value by [Parameter] in property has name of parameter. Ex: [Parameter] public string id {get;set;}
+        </li>
+        <li>
+            Optional parameter has name end with ?. Ex: /list/{id?}
+        </li>
+        <li>
+            Constraints parameter {name:type}. Ex: /detail/{id:int}
+        </li>
+        <li>
+            Catch-all parameter has name start with *<br />
+            For the URL /catch-all/this/is/a/test with a route template of /catch-all/{*pageRoute}, the value of PageRoute is set to this/is/a/test.
+        </li>
+    </ul>
+    - Use [Parameter, SupplyParameterFromQuery] to get parameter from query string<br />
+    - Inject service NavigationManager to manage URIs and navigation in C# code <br />
+    - Use NavLink component to automatically applies an “active” CSS class <br />
+    - Use Router.OnNavigateAsync to handle navigation (guard route)<br />
+</p>
+<a href="@getLink()">Example</a>
+
+@code {
+    string getLink() => Nav.GetUriWithQueryParameters("/navigation/ex/123", new Dictionary<string, object?>()
+        {
+            ["filter"] = "testingASDF"
+        });
+}
