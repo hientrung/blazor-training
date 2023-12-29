@@ -7,6 +7,6 @@
     [Parameter]
     public int? Id { get; set; }
 
-    [Parameter, SupplyParameterFromQuery]
+    [SupplyParameterFromQuery]
     public string? Filter { get; set; }
 }
