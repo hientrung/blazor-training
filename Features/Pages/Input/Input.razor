@@ -48,10 +48,16 @@
         <AntiforgeryToken />
         <DataAnnotationsValidator />
         <ValidationSummary />
-        Name
-        <InputText @bind-Value="ex2Model.Name" />
-        Email
-        <InputText @bind-Value="ex2Model.Email" />
+        <div style="margin-bottom: 5px;">
+            Name
+            <InputText @bind-Value="ex2Model.Name" />
+            <ValidationMessage For="@(()=>ex2Model.Name)" />
+        </div>
+        <div style="margin-bottom: 5px;">
+            Email
+            <InputText @bind-Value="ex2Model.Email" />
+            <ValidationMessage For="@(()=>ex2Model.Email)" />
+        </div>
         <button type="submit">Submit</button>
     </EditForm>
     @ex2Msg
