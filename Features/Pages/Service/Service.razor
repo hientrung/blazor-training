@@ -1,0 +1,44 @@
+﻿@page "/service"
+@inject Services.AgifyService svc
+
+<h3>Service</h3>
+<div>
+    <a href="https://learn.microsoft.com/en-gb/aspnet/core/blazor/fundamentals/dependency-injection">https://learn.microsoft.com/en-gb/aspnet/core/blazor/fundamentals/dependency-injection</a>
+</div>
+
+<p>
+    - Register service in program file: builder.Services.Add.... Interface vs Class<br/>
+    - Service lifetime: <br />
+    <ul>
+        <li>
+            Scoped: Server app for each Http request. Client app treat as Singleton
+        </li>
+        <li>
+            Singleton: created once, all request service receive same instance
+        </li>
+        <li>
+            Transient: created for every request
+        </li>
+    </ul>
+    - Request a service in component: directive @@inject in razor file or attribute [Inject] in class file<br/>
+    - Request a service in service: public constructor with parameter. Ex: public MyService(HttpClient http) {...}<br/>
+    - Common services: HttpClient, IJSRuntime, NavigationManager, and extension to working JSON System.Net.Http.Json
+</p>
+<div class="block">
+    First name
+    <input @bind="Name" />
+    <button @onclick="GetAge">Predict age</button>
+    @Result
+</div>
+@code {
+    string Name = "";
+    string Result = "";
+    async void GetAge()
+    {
+        if (String.IsNullOrEmpty(Name)) return;
+        Result = "....";
+        var age = await svc.GetAge(Name);
+        Result = age.ToString();
+        StateHasChanged();
+    }
+}
