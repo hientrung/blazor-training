@@ -1,6 +1,12 @@
 ﻿@page "/"
 @inject CountService CountSvc;
 
+<p>
+    Blazor WebAssembly is a hosting model where the Blazor application is executed directly in the client's browser using WebAssembly.<br/>
+    This allows for a fully client-side experience, with the application running in the browser without the need for a server connection after the initial download.<br/>
+    Blazor WebAssembly is suitable for applications that need to run offline or have complex client-side interactions.
+</p>
+
 <h3>Scoped is Singleton service</h3>
 <p>Application created in client-side. So it's individual instance for each clients, tabs, sessions</p>
 <p>Stop server do not affect because application created and run like as normal web page</p>
